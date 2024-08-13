@@ -1,95 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Honk&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+body {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  background-image: url('https://cdn.pixabay.com/photo/2012/12/24/08/39/background-72250_1280.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .todo-container {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    padding: 30px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .title {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-  }
-  
-  .input-form {
-    margin-bottom: 20px;
-  }
-  
-  .task-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .card-stack {
-    position: relative;
-  }
-  
-  .card {
-    position: relative;
-    padding: 15px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #333;
-    transition: all 0.3s ease;
-  }
-  
-  .card-1 { z-index: 3; }
-  .card-2 {
-    background-color: #f8f8f8;
-    z-index: 2;
-  }
-  .card-3 {
-    background-color: #f0f0f0;
-    z-index: 1;
-  }
-  
-  .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  }
-  
-  .delete-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: #ff4d4d;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .card:hover .delete-btn {
-    opacity: 1;
-  }
-  
-  .empty-state {
-    text-align: center;
-    color: #666;
-    font-size: 16px;
-    margin-top: 20px;
-  }
+.title {
+  font-size: 48px;
+  font-weight: 200;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.app-container {
+  max-width: 400px;
+  margin: 100px auto 40px; /* Increased top margin to accommodate fixed header */
+}
+
+.todo-container {
+  max-width: 400px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  position: relative;
+  border-radius: 0;
+}
+
+.todo-container::before,
+.todo-container::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 0;
+}
+
+.todo-container::before {
+  bottom: -6px;
+  left: 3px;
+  right: -3px;
+  height: 100%;
+  z-index: -1;
+}
+
+.todo-container::after {
+  bottom: -12px;
+  left: 6px;
+  right: -6px;
+  height: 100%;
+  z-index: -2;
+}
+
+.input-form {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.task-input {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  padding: 10px 0;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+}
+
+.task-input::placeholder {
+  color: #999;
+}
+
+.input-form::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: -10px;
+  height: 1px;
+  background-color: #eee;
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.task-item {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+}
+
+.task-text {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.task-buttons {
+  display: flex;
+}
+
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.task-item:hover .edit-btn,
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.task-item::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0;
+  height: 1px;
+  background-color: #eee;
+}
